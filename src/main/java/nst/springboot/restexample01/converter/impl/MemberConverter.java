@@ -18,7 +18,7 @@ public class MemberConverter implements DtoEntityConverter<MemberDto, Member>{
 
     @Override
     public MemberDto toDto(Member e) {
-        return new MemberDto(e.getId(),e.getFirstName(),e.getLastName(),e.getAcademic_title(),e.getScientific_field(),e.getEducation_field(),e.getDepartment());
+        return new MemberDto(e.getId(),e.getFirstName(),e.getLastName(),e.getAcademic_title(),e.getScientific_field(),e.getEducation_field(),e.getDepartment(),e.getMemberHistory());
     }
 
     @Override

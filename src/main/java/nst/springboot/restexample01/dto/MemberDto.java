@@ -5,7 +5,9 @@
 package nst.springboot.restexample01.dto;
 
 import java.io.Serializable;
+import java.util.List;
 import nst.springboot.restexample01.domain.AcademicTitleEnum;
+import nst.springboot.restexample01.domain.AcademicTitleHistory;
 import nst.springboot.restexample01.domain.Department;
 import nst.springboot.restexample01.domain.EducationTitleEnum;
 import nst.springboot.restexample01.domain.ScientificFieldEnum;
@@ -23,6 +25,7 @@ public class MemberDto implements Serializable{
     private ScientificFieldEnum scientific_field;
     private EducationTitleEnum education_field;
     private Department department;
+    private List<AcademicTitleHistory> history;
 
     
     public MemberDto() {
@@ -38,6 +41,18 @@ public class MemberDto implements Serializable{
         this.education_field = EducationTitleEnum.valueOf(education_field);
         this.department = department;
     }
+
+    public MemberDto(Long id, String firstName, String lastName, String academic_title, String scientific_field, String education_field, Department department, List<AcademicTitleHistory> history) {
+        this.id = id;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.academic_title = AcademicTitleEnum.valueOf(academic_title);
+        this.scientific_field = ScientificFieldEnum.valueOf(scientific_field);
+        this.education_field = EducationTitleEnum.valueOf(education_field);
+        this.department = department;
+        this.history = history;
+    }
+    
     
 
     public Long getId() {
@@ -94,4 +109,13 @@ public class MemberDto implements Serializable{
     public void setDepartment(Department department) {
         this.department = department;
     }
+
+    public List<AcademicTitleHistory> getHistory() {
+        return history;
+    }
+
+    public void setHistory(List<AcademicTitleHistory> history) {
+        this.history = history;
+    }
+
 }

@@ -4,6 +4,7 @@
  */
 package nst.springboot.restexample01.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
@@ -46,8 +47,8 @@ public class AcademicTitleHistory {
     @Enumerated(EnumType.STRING)
     private ScientificFieldEnum scientificField;
 
-    @ManyToOne()
-    @JoinColumn(name = "member_id", referencedColumnName = "id")
+    @JsonIgnore
+    @ManyToOne
     private Member member;
 
     public AcademicTitleHistory() {

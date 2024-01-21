@@ -4,6 +4,7 @@
  */
 package nst.springboot.restexample01.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -35,6 +36,7 @@ public class Subject implements Serializable {
     @Column(name = "espb")
     private int esbp;
 
+    @JsonIgnore
     @ManyToOne()
     @JoinColumn(name = "department_id")
     private Department department;

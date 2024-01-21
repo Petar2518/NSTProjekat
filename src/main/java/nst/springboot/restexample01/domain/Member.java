@@ -4,6 +4,8 @@
  */
 package nst.springboot.restexample01.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
@@ -50,7 +52,11 @@ public class Member {
     @Column
     private EducationTitleEnum education_field;
     
+    @JsonIgnore
+    @OneToMany(mappedBy = "member",cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<AcademicTitleHistory> memberHistory = new ArrayList<>();
     
+    @JsonIgnore
     @ManyToOne()
     @JoinColumn(name = "department_id", referencedColumnName = "id")
     private Department department_id;
@@ -68,6 +74,18 @@ public class Member {
         this.education_field = EducationTitleEnum.valueOf(education_field);
         this.department_id = department_id;
     }
+    public Member(Long id, String firstName, String lastName, String academic_title, String scientific_field, String education_field, Department department_id,List<AcademicTitleHistory> history) {
+        this.id = id;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.academic_title = AcademicTitleEnum.valueOf(academic_title);
+        this.scientific_field = ScientificFieldEnum.valueOf(scientific_field);
+        this.education_field = EducationTitleEnum.valueOf(education_field);
+        this.department_id = department_id;
+        this.memberHistory=history;
+    }
+
+        
 
     
     public Long getId() {
@@ -126,6 +144,14 @@ public class Member {
         this.department_id = department;
     }
 
+    public List<AcademicTitleHistory> getMemberHistory() {
+        return memberHistory;
+    }
 
+    public void setMemberHistory(List<AcademicTitleHistory> memberHistory) {
+        this.memberHistory = memberHistory;
+    }
+
+    
     
 }

@@ -4,6 +4,7 @@
  */
 package nst.springboot.restexample01.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -36,10 +37,12 @@ public class Department {
     @Column(name = "short_name")
     private String shortName;
 
+    @JsonIgnore
     @ManyToOne()
     @JoinColumn(name = "rukovodilac", referencedColumnName = "id")
     private Member rukovodilac;
-
+    
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "sekretar", referencedColumnName = "id")
     private Member sekretar;
